@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+
+    <!-- CDN 방식 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <script>
+     
+
+       $(document).ready(function(){
+
+        // button 이벤트 처리
+        $("#ok").on("click mouseover", function(){
+            console.log("ok");
+            console.log(this);  // JS객체
+            console.log($(this)); // jQuery객체, ok라는 객체(이벤트 소스)에 대한 정보를 얻어서 원하는 작업을 할 수 있음
+            console.log($(this).text());
+
+            console.log(event);  // event 객체
+            console.log(event.target);  // event 객체에서도 이벤트 소스 객체 참조 가능
+
+        });
+        
+        // text 이벤트 처리
+        $("#txtInput").on("keyup", function(){
+            console.log("txtInput");
+            console.log($(this).val());
+            
+        });
+
+        // select 이벤트 처리
+        $("select").on("change", function(){
+            console.log($(this).val());
+            console.log($(":selected").text());  // body를 가져온 것
+        });
+            
+        // submit 이벤트
+        $("form").on("submit", function(){
+            //아이디는 필수 항목
+            var id = $("#userid").val();
+            if(id.lenth==0){
+                event.preventDefault();
+                alert("아이디 필수");
+                $("#userid").focus();
+            }
+        });
+
+       });
+    
+    </script>
+
+</head>
+<body>
+    <!-- # 7. 이벤트 -->
+    <button id="ok">OK</button><br>
+    text:<input type="text" id="txtInput" /> <br>
+    <button id="hover">hover</button><br>
+
+    <form action="http://www.google.com">
+    아이디<input type="text" name="userid" id="userid"><br>
+    비밀번호<input type="text" name="passwd"><br>
+    <select name="fruit">
+     <option value="사과">사과</option>
+     <option value="바나나">바나나</option>
+     <option value="수박">수박</option>
+    </select><br>
+     사과<input type="checkbox" name="checkbox" id="checkbox" checked>
+    <input type="submit" value="전송">
+    </form>
+</body>
+</html>
